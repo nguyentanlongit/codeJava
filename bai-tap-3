@@ -1,0 +1,113 @@
+import React, { useEffect, useState }from "react";
+import {
+    Alert,
+    Button,
+    Image,
+    SafeAreaView,
+    ScrollView,
+    StatusBar,
+    StyleSheet,
+    Text,
+    TextInput,
+    useColorScheme,
+    View,
+  } from 'react-native';
+  import {FloatingLabelInput} from 'react-native-floating-label-input';//show hide password
+
+  export const LoginApp = () =>{
+  const [tdn, onChangeTdn] = useState<string>('');
+  const [mk, onChangeMk]=useState<string>('');
+  // const [cont, setCont] = useState('')
+  // const [show, setShow] = useState(false)
+  // useEffect(()=>{
+  //   const timeout = setTimeout(() => {
+  //     setShow(!show)
+  //   }, 5000);
+  //   return ()=> clearTimeout(timeout)
+  // },[show])
+  // useEffect(() => {
+  //   // console.log('name changed to ', tdn);
+  //   const tenDN=tdn;
+  //   // console.log('name changed to ', tenDN);
+  // }, [tdn]);
+  const kiemtra = () => {
+    // const dkien=tdn;
+    // console.log("test ++ ",kiemtra);
+    if(tdn =='' || mk ==''){
+      Alert.alert("Xin nhập đầy đủ dữ liệu");
+    }
+    else{
+      Alert.alert("Chào mừng đăng nhập Username"+tdn+"Mật Khẩu: "+mk);
+    }
+  };
+  return (
+    <View style={styles.container}>
+    <Image
+        style={styles.stretch}
+        source={{
+          uri: 'https://khaivy.com.vn/upload/hinhanh/gia-cong-ton-kliplock-tai-cong-trinh-binh-duong-5156.png'
+        }}
+      />
+    <Text style={styles.textCustom}>Tên đăng nhập:</Text>
+      <TextInput
+        style={styles.input}
+        onChangeText={onChangeTdn}
+        placeholder="Tên đăng nhập hoặc số điện thoại"
+        value={tdn}
+      />
+      <Text style={styles.textCustom}>Mật Khẩu:</Text>
+      <TextInput
+        style={styles.input}
+        // ref= {(el) => {{tdn} = el; }}
+        secureTextEntry={true}
+        placeholder="Nhập Mật Khẩu"
+        onChangeText={onChangeMk}
+        value={mk}
+        //keyboardType="numeric"
+      />      
+      {/* <FloatingLabelInput style={styles.container1} label={'Mật khẩu'} isPassword togglePassword={show} value={cont} onChangeText={(value) => setCont(value)} customShowPasswordComponent={<Text>Hiển thị</Text>} customHidePasswordComponent={<Text>Ẩn</Text>}/> */}
+      <Text style={styles.textQmk}>Quên mật khẩu?</Text>
+      <Button
+        title="Đăng Nhập"
+        onPress={kiemtra}//<Text>{tdn}</Text><Text>{onChangeMk}</Text>() => Alert.alert('Đã click đăng nhập '+[tdn]+' Mật khẩu: '+[mk])
+      />
+      <Text style={styles.textQmk}>----------</Text>
+      <Button
+        title="Đăng Ký"
+        onPress={() => Alert.alert('Đã click đăng ký')}
+      />
+    </View>
+    // testloi(()=> console.log({tdn}));
+  );
+};
+const styles = StyleSheet.create({
+    input: {
+        height: 40,
+        margin: 12,
+        borderWidth: 1,
+      },
+      container1: {
+        flex: 1,
+        backgroundColor: '#fff',
+        alignItems: 'center',
+        justifyContent: 'center',
+      },
+      container:{
+      flex: 1,
+        backgroundColor: '#fff',
+    //    alignItems: 'center',
+        justifyContent: 'center',
+      },
+      textCustom:{
+      margin:12,
+      },
+      tinyLogo:{},
+      textQmk:{marginRight:1,
+        color:'red'},
+        stretch: {
+          width: '100%',
+          height: 150,
+          resizeMode: 'stretch',
+        },
+});
+// export default LoginApp
